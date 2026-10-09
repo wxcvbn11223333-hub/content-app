@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#6c3cf0">
+<meta name="apple-mobile-web-app-title" content="مولّد المحتوى">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/icon-192.png">
+<title>مولّد المحتوى | التقني أبو أمير x7m177</title>
+<style>
+:root{--bg:#f6f4ff;--card:#fff;--tx:#1b1530;--mut:#6b6485;--pri:#6c3cf0;--pri2:#9b6bff;--bd:#e3ddf7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0b1e;--card:#1a1430;--tx:#f1edff;--mut:#a79fc4;--bd:#2d2550}}
+:root[data-theme="dark"]{--bg:#0f0b1e;--card:#1a1430;--tx:#f1edff;--mut:#a79fc4;--bd:#2d2550}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.7}
+.w{max-width:560px;margin:0 auto;padding:14px 16px 90px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+.bn{font-weight:800;font-size:17px;line-height:1.2}
+.bs{color:var(--mut);font-size:12px}
+.tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:4px;margin-bottom:12px}
+.tab{flex:1;border:0;background:transparent;color:var(--mut);padding:9px 2px;border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--pri);color:#fff}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+label.l{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+details label.l{margin-top:14px}
+summary{font-weight:700;cursor:pointer;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--bd);background:transparent;color:var(--tx);padding:8px 14px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
+.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}
+input[type=text],textarea{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--bd);background:transparent;color:var(--tx);font:inherit;font-size:15px;margin-bottom:8px}
+textarea{resize:vertical}
+.sg{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);margin-top:4px}
+.go{width:100%;border:0;border-radius:14px;padding:14px;font:inherit;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--pri),var(--pri2));cursor:pointer;margin:4px 0 14px}
+.go:disabled{opacity:.6}
+.out h3{margin:0 0 6px;font-size:15px;color:var(--pri)}
+.out p{margin:0 0 10px;white-space:pre-wrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sm{border:1px solid var(--bd);background:transparent;color:var(--mut);border-radius:10px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.empty{color:var(--mut);text-align:center;padding:24px 0;font-size:14px}
+.foot{text-align:center;color:var(--mut);font-size:12px;margin-top:20px}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto;background:var(--tx);color:var(--bg);padding:10px 14px;border-radius:12px;font-size:14px;z-index:9;display:none;text-align:center}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="brand">
+    <div class="logo">ت</div>
+    <div><div class="bn">التقني أبو أمير x7m177</div><div class="bs">مساعدك الذكي لصناعة المحتوى</div></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-p="p1">✨ سكربت</button>
+    <button class="tab" data-p="p2">🎣 هوكات</button>
+    <button class="tab" data-p="p3">💡 أفكار</button>
+    <button class="tab" data-p="p4">✍️ محرر</button>
+    <button class="tab" data-p="p5">⭐</button>
+  </div>
+
+  <details class="card" open>
+    <summary>⚙️ إعداداتك (تنطبق على كل الأدوات)</summary>
+    <label class="l">المنصة</label><div class="chips" id="pf"></div>
+    <label class="l">المجال</label><div class="chips" id="nc"></div>
+    <input type="text" id="nco" placeholder="أو اكتب مجالك أنت" style="margin-top:8px">
+    <label class="l">الهدف</label><div class="chips" id="gl"></div>
+    <label class="l">أسلوب التصوير</label><div class="chips" id="sy"></div>
+    <label class="l">اللهجة</label><div class="chips" id="tn"></div>
+    <label class="l">التوقيع عند النسخ</label>
+    <input type="text" id="sn" placeholder="اكتب اسمك أو حسابك">
+    <label class="sg"><input type="checkbox" id="sg" checked> أضف التوقيع عند النسخ</label>
+  </details>
+
+  <div id="p1">
+    <div class="card">
+      <label class="l">الموضوع</label><input type="text" id="tp" placeholder="مثال: ٣ أخطاء تقتل وصول فيديوهاتك">
+      <label class="l">تفاصيل إضافية (اختياري)</label><input type="text" id="nt" placeholder="جمهورك، منتجك، معلومة تبي تذكرها">
+      <button class="go" id="gen" style="margin-bottom:0">اكتب لي السكربت ✨</button>
+    </div>
+    <div id="r1"></div>
+  </div>
+
+  <div id="p2" class="hide">
+    <div class="card">
+      <label class="l">الموضوع</label><input type="text" id="hp" placeholder="عن وش الفيديو؟">
+      <label class="l">نوع الهوك</label><div class="chips" id="hk" style="margin-bottom:12px"></div>
+      <button class="go" id="hb" style="margin-bottom:0">اكتب ١٠ هوكات 🎣</button>
+    </div>
+    <div id="r2"></div>
+  </div>
+
+  <div id="p3" class="hide">
+    <div class="card">
+      <label class="l">اتجاه الأفكار (اختياري)</label><input type="text" id="ip" placeholder="جمهورك أو شي تبي تركز عليه">
+      <button class="go" id="ib" style="margin-bottom:0">اعطني ١٠ أفكار 💡</button>
+    </div>
+    <div id="r3"></div>
+  </div>
+
+  <div id="p4" class="hide">
+    <div class="card">
+      <label class="l">الصق نصك هنا</label><textarea id="ed" rows="6" placeholder="سكربت، كابشن، أي نص تبي تنسقه أو تطوره"></textarea>
+      <label class="l">وش تبي أسوي فيه؟</label><div class="chips" id="ea" style="margin-bottom:12px"></div>
+      <button class="go" id="eb" style="margin-bottom:0">نفّذ ✍️</button>
+    </div>
+    <div id="r4"></div>
+  </div>
+
+  <div id="p5" class="hide"><div id="r5"></div></div>
+
+  <div class="card" style="margin-top:12px"><label class="l">📲 ثبّتها كتطبيق</label><div class="bs">آيفون: زر المشاركة ← إضافة إلى الشاشة الرئيسية<br>أندرويد: قائمة ⋮ ← إضافة إلى الشاشة الرئيسية</div></div>
+  <div class="foot">صُنع بواسطة التقني أبو أمير x7m177 © 2026</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var BRAND="التقني أبو أمير x7m177";
+var D={
+pf:{"تيك توك":"٢٥–٣٥ ثانية","ريلز":"٢٠–٣٠ ثانية","سناب شات":"٢٠–٣٠ ثانية","يوتيوب شورتس":"٣٠–٤٥ ثانية"},
+wd:{"تيك توك":80,"ريلز":70,"سناب شات":70,"يوتيوب شورتس":100},
+nc:["تقنية","تسويق وربح","صناعة محتوى","تطوير الذات","لياقة","ألعاب","سفر","جمال وموضة","تعليم","طبخ"],
+gl:["جذب متابعين","بيع منتج","رفع التفاعل"],
+sy:["وجه ويد","بدون وجه","بوجهي فقط"],
+tn:["خليجية","بيضاء","فصحى مبسطة"],
+hk:["الكل","سؤال","صدمة","قصة","رقم","تحدي"],
+ea:["نسّق للقراءة","حوّله لسكربت","حسّن الصياغة","اختصره","اكتب كابشن","أضف إيموجي"]
+};
+var SY={"وجه ويد":"مزيج من لقطات الوجه ولقطات اليد والجوال والشاشة","بدون وجه":"بدون وجه: لقطات اليد والجوال والشاشة فقط","بوجهي فقط":"المصور يظهر بوجهه أمام الكاميرا"};
+var EP={"نسّق للقراءة":"نسّق هذا النص ليُقرأ بصوت عالي في فيديو: جمل قصيرة كل جملة في سطر، وسطر فارغ بين الفقرات، مع الحفاظ على المعنى وعلى كلماتي قدر الإمكان.","حوّله لسكربت":"حوّل هذا النص إلى سكربت فيديو قصير بهوك قوي ونهاية بدعوة تناسب الهدف.","حسّن الصياغة":"حسّن صياغة هذا النص وصحح الأخطاء وخله أوضح وأقوى بنفس المعنى.","اختصره":"اختصر هذا النص للنصف تقريباً مع الحفاظ على الفكرة الأساسية.","اكتب كابشن":"اكتب كابشن جذاب من هذا النص مع هاشتاقات مناسبة في آخره.","أضف إيموجي":"أضف إيموجي مناسبة بشكل معتدل في هذا النص دون تغيير كلماته."};
+var RULE="لا تخترع أرقاماً أو إحصائيات أو وعود دخل مضمونة. لا تضع إيموجي داخل النص المنطوق.";
+var S={pf:"تيك توك",nc:"تقنية",gl:"جذب متابعين",sy:"وجه ويد",tn:"خليجية",hk:"الكل",ea:"نسّق للقراءة"};
+var AI=null,curP=null;
+function $(id){return document.getElementById(id)}
+async function callAI(p){var r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});if(r.status===429)throw{code:"rate_limited"};if(!r.ok)throw{code:"error"};var d=await r.json();return d.text||""}
+AI=function(p){return callAI(p).then(function(t){return {text:t}})};
+AI.json=function(p){return callAI(p).then(function(t){return JSON.parse(t.replace(/```json|```/g,"").trim())})};
+if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){})}
+
+function persist(){try{localStorage.setItem("st",JSON.stringify({S:S,sn:$("sn").value,nco:$("nco").value}))}catch(e){}}
+try{var z=JSON.parse(localStorage.getItem("st")||"{}");if(z.S)for(var k in z.S)S[k]=z.S[k];$("sn").value=z.sn||"";$("nco").value=z.nco||""}catch(e){}
+$("sn").oninput=persist;$("nco").oninput=persist;
+function loadF(){try{return JSON.parse(localStorage.getItem("fav")||"[]")}catch(e){return[]}}
+function saveF(a){try{localStorage.setItem("fav",JSON.stringify(a))}catch(e){}}
+
+function chips(id,arr,k,store){var el=$(id);arr.forEach(function(x){var b=document.createElement("button");b.className="chip"+(S[k]===x?" on":"");b.textContent=x;b.onclick=function(){S[k]=x;[].forEach.call(el.children,function(c){c.classList.toggle("on",c===b)});if(store)persist()};el.appendChild(b)})}
+chips("pf",Object.keys(D.pf),"pf",1);chips("nc",D.nc,"nc",1);chips("gl",D.gl,"gl",1);chips("sy",D.sy,"sy",1);chips("tn",D.tn,"tn",1);chips("hk",D.hk,"hk");chips("ea",D.ea,"ea");
+
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},4000)}
+function errMsg(e){var c=e&&e.code;return c==="not_granted"?"فعّل صلاحية الذكاء الاصطناعي للصفحة ثم جرّب مرة ثانية":c==="rate_limited"?"طلبات كثيرة، انتظر شوي وجرّب":!AI?"الذكاء الاصطناعي غير متاح الحين، جرّب بعد شوي":"تعذر الاتصال، جرّب مرة ثانية"}
+async function run(btn,fn){var o=btn.textContent;btn.disabled=true;btn.textContent="⏳ جاري الكتابة…";try{if(!AI)throw{};await fn()}catch(e){toast(errMsg(e))}btn.disabled=false;btn.textContent=o}
+function niche(){return ($("nco").value||"").trim()||S.nc}
+function ctx(){return "المنصة: "+S.pf+" (المدة "+D.pf[S.pf]+")\nالمجال: "+niche()+"\nالهدف: "+S.gl+"\nأسلوب التصوير: "+SY[S.sy]+"\nاللهجة: "+S.tn}
+function J(p){return AI.json(p,{cache:false})}
+function T(p){return AI(p,{cache:false}).then(function(r){return (r.text||"").trim()})}
+
+function copy(txt,b){var v=txt+($("sg").checked?"\n\n— "+(($("sn").value||"").trim()||BRAND):"");try{navigator.clipboard.writeText(v);b.textContent="تم ✓"}catch(e){b.textContent="انسخ يدوياً"}setTimeout(function(){b.textContent="نسخ"},1500)}
+function mk(title,txt,fav){
+  var c=document.createElement("div");c.className="card out";
+  var h=document.createElement("h3");h.textContent=title;
+  var p=document.createElement("p");p.textContent=txt;
+  var r=document.createElement("div");r.className="row";
+  var b=document.createElement("button");b.className="sm";b.textContent="نسخ";b.onclick=function(){copy(p.textContent,b)};r.appendChild(b);
+  if(fav){var f=document.createElement("button");f.className="sm";f.textContent="⭐ حفظ";f.onclick=function(){var a=loadF();a.unshift({t:title,x:p.textContent});saveF(a.slice(0,50));f.textContent="تم الحفظ ✓"};r.appendChild(f)}
+  c.appendChild(h);c.appendChild(p);c.appendChild(r);return c;
+}
+function addBtn(card,label,fn){var b=document.createElement("button");b.className="sm";b.textContent=label;b.onclick=fn;card.querySelector(".row").appendChild(b)}
+
+function tab(p){["p1","p2","p3","p4","p5"].forEach(function(x){$(x).classList.toggle("hide",x!==p)});[].forEach.call($("tabs").children,function(t){t.classList.toggle("on",t.dataset.p===p)});if(p==="p5")renderFavs();window.scrollTo(0,0)}
+[].forEach.call($("tabs").children,function(t){t.onclick=function(){tab(t.dataset.p)}});
+
+/* ---- السكربت ---- */
+function refine(instr){
+  if(!curP||!AI)return;var st=$("rst");st.textContent="⏳ جاري التعديل…";
+  T("هذا سكربت فيديو قصير بلهجة "+S.tn+":\n\n"+curP.textContent+"\n\nطلب التعديل: "+instr+"\n\nأعد النص المعدل فقط، جاهز للقراءة بصوت عالي، بدون شرح ولا علامات ولا إيموجي.").then(function(v){if(v)curP.textContent=v;st.textContent="تم ✓"}).catch(function(){st.textContent="تعذر التعديل، جرّب مرة ثانية"});
+}
+function renderScript(o){
+  var r=$("r1");r.innerHTML="";
+  var d=document.createElement("div");d.className="card out";d.innerHTML='<h3>المدة المناسبة</h3><p></p>';d.querySelector("p").textContent=D.pf[S.pf]+" على "+S.pf;r.appendChild(d);
+  r.appendChild(mk("الهوك",String(o.hook||""),true));
+  var sc=mk("النص جاهز للقراءة بصوتك 🎙️",String(o.script||""),true);r.appendChild(sc);curP=sc.querySelector("p");
+  var rc=document.createElement("div");rc.className="card out";
+  rc.innerHTML='<h3>✍️ طوّر النص</h3><div class="chips" id="rq"></div><input type="text" id="ri" placeholder="مثال: خله أقصر وأكثر حماس" style="margin-top:10px"><div class="row"><button class="sm" id="rb">طبّق</button><span class="bs" id="rst"></span></div>';
+  r.appendChild(rc);
+  ["أقصر","أكثر حماس","أبسط","هوك أقوى","أضف قصة قصيرة"].forEach(function(x){var b=document.createElement("button");b.className="chip";b.textContent=x;b.onclick=function(){refine(x)};$("rq").appendChild(b)});
+  $("rb").onclick=function(){var v=$("ri").value.trim();if(v)refine(v)};
+  if(o.shots&&o.shots.length)r.appendChild(mk("اللقطات",o.shots.join("\n"),false));
+  r.appendChild(mk("الكابشن",String(o.caption||""),true));
+  if(o.hashtags&&o.hashtags.length)r.appendChild(mk("الهاشتاقات",o.hashtags.join(" "),false));
+  var re=document.createElement("button");re.className="go";re.textContent="🔄 اكتب لي نسخة ثانية";re.onclick=genScript;r.appendChild(re);
+  r.scrollIntoView({behavior:"smooth"});
+}
+function genScript(){run($("gen"),async function(){
+  var t=($("tp").value||"").trim()||niche(),nt=($("nt").value||"").trim();
+  var o=await J("أنت كاتب سكربتات محترف لصناع المحتوى العرب.\nاكتب سكربت فيديو قصير.\n"+ctx()+"\nالموضوع: "+t+"\n"+(nt?"تفاصيل: "+nt+"\n":"")+"النص المنطوق حوالي "+D.wd[S.pf]+" كلمة بجمل قصيرة، يبدأ بهوك قوي وينتهي بدعوة تناسب الهدف، ككلام طبيعي يُقرأ بصوت عالي بدون وصف لقطات داخله. اللقطات المقترحة تناسب أسلوب التصوير. "+RULE+" نوّع الأسلوب ولا تكرر القوالب.\nأعد JSON فقط بدون أي نص آخر: "+'{"hook":"جملة الهوك","script":"النص المنطوق كاملاً","shots":["لقطة 1","لقطة 2","لقطة 3"],"caption":"كابشن جاهز","hashtags":["#هاشتاق"]}');
+  renderScript(o)})}
+$("gen").onclick=genScript;
+
+/* ---- الهوكات ---- */
+function genHooks(){run($("hb"),async function(){
+  var t=($("hp").value||"").trim()||niche();
+  var o=await J("اكتب 10 هوكات مختلفة (الجملة الأولى في الفيديو خلال أول 3 ثواني) تخلي المشاهد يكمل.\n"+ctx()+"\nالموضوع: "+t+"\nنوع الهوك: "+S.hk+"\nكل هوك جملة قصيرة وقوية. "+RULE+"\nأعد JSON فقط: "+'{"hooks":["هوك 1","هوك 2"]}');
+  var r=$("r2");r.innerHTML="";
+  (o.hooks||[]).forEach(function(h){var c=mk("هوك",String(h),true);addBtn(c,"اكتب سكربت به",function(){$("tp").value=t;$("nt").value="ابدأ السكربت بهذا الهوك: "+h;tab("p1");genScript()});r.appendChild(c)});
+})}
+$("hb").onclick=genHooks;
+
+/* ---- الأفكار ---- */
+function genIdeas(){run($("ib"),async function(){
+  var d=($("ip").value||"").trim();
+  var o=await J("اقترح 10 أفكار فيديوهات قصيرة مختلفة وجذابة.\n"+ctx()+"\n"+(d?"تفاصيل: "+d+"\n":"")+"لكل فكرة عنوان قصير وزاوية الطرح في جملة. "+RULE+"\nأعد JSON فقط: "+'{"ideas":[{"title":"عنوان","angle":"زاوية الطرح"}]}');
+  var r=$("r3");r.innerHTML="";
+  (o.ideas||[]).forEach(function(i){var c=mk("💡 فكرة",String(i.title||"")+"\n"+String(i.angle||""),true);
+    addBtn(c,"اكتب سكربت",function(){$("tp").value=i.title;$("nt").value=i.angle||"";tab("p1");genScript()});
+    addBtn(c,"هوكات",function(){$("hp").value=i.title;tab("p2");genHooks()});r.appendChild(c)});
+})}
+$("ib").onclick=genIdeas;
+
+/* ---- المحرر ---- */
+function genEdit(){
+  var src=($("ed").value||"").trim();if(!src){toast("الصق نصك أول");return}
+  run($("eb"),async function(){
+    var x=await T(EP[S.ea]+"\n"+ctx()+"\n\nالنص:\n"+src+"\n\nأعد النتيجة فقط بدون أي شرح أو مقدمة.");
+    var r=$("r4");r.innerHTML="";var c=mk("النتيجة",x,true);
+    addBtn(c,"انقله للمحرر",function(){$("ed").value=c.querySelector("p").textContent;toast("تم النقل للمحرر")});r.appendChild(c);
+  })}
+$("eb").onclick=genEdit;
+
+/* ---- المفضلة ---- */
+function renderFavs(){
+  var el=$("r5");el.innerHTML="";var a=loadF();
+  if(!a.length){el.innerHTML='<div class="empty">ما عندك مفضلات للحين ⭐<br>احفظ أي هوك أو سكربت أو فكرة يعجبك</div>';return}
+  a.forEach(function(it,i){var c=mk(it.t,it.x,false);addBtn(c,"حذف",function(){var q=loadF();q.splice(i,1);saveF(q);renderFavs()});el.appendChild(c)});
+}
+</script>
+</body>
+</html>
