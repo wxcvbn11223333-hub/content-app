@@ -16,7 +16,7 @@ function geminiUrl(model) {
 export async function onRequestGet(context) {
   const { env } = context;
   const key = env.GEMINI_API_KEY;
-  const model = env.MODEL || "gemini-2.5-flash";
+  const model = env.MODEL || "gemini-3.8-flash";
   const out = {
     hasKey: !!key,
     keyLength: key ? key.length : 0,
@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
   const prompt = String((body && body.prompt) || "").slice(0, 6000);
   if (!prompt) return reply({ error: "empty" }, 400);
 
-  const model = env.MODEL || "gemini-2.5-flash";
+  const model = env.MODEL || "gemini-3.8-flash";
 
   try {
     const r = await fetch(geminiUrl(model), {
