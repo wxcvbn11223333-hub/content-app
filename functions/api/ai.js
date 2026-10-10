@@ -5,8 +5,37 @@ const WINDOW = 60 * 60 * 1000;
 function reply(obj, status) {
   return new Response(JSON.stringify(obj), {
     status: status || 200,
-    headers: { "content-type": "application/json" }
+    headers: { "content-type": "application/json; charset=utf-8" }
   });
+}
+
+function geminiUrl(model) {
+  return "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent";
+}
+
+export async function onRequestGet(context) {
+  const { env } = context;
+  const key = env.GEMINI_API_KEY;
+  const model = env.MODEL || "gemini-2.5-flash";
+  const out = {
+    hasKey: !!key,
+    keyLength: key ? key.length : 0,
+    keyStart: key ? key.slice(0, 3) : null,
+    model: model
+  };
+  if (!key) return reply(out);
+  try {
+    const r = await fetch(geminiUrl(model), {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({ contents: [{ parts: [{ text: "قل مرحبا بكلمة واحدة" }] }] })
+    });
+    out.upstreamStatus = r.status;
+    out.upstreamBody = (await r.text()).slice(0, 400);
+  } catch (e) {
+    out.fetchError = String(e);
+  }
+  return reply(out);
 }
 
 export async function onRequestPost(context) {
@@ -29,17 +58,14 @@ export async function onRequestPost(context) {
   const model = env.MODEL || "gemini-2.5-flash";
 
   try {
-    const r = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json", "x-goog-api-key": key },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { maxOutputTokens: 4000 }
-        })
-      }
-    );
+    const r = await fetch(geminiUrl(model), {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 4000 }
+      })
+    });
     if (!r.ok) return reply({ error: "upstream" }, r.status === 429 ? 429 : 502);
     const d = await r.json();
     const parts = (d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts) || [];
